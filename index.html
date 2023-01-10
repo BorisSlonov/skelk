@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon">
+    <link type="Image/x-icon" href="/favicon.ico" rel="icon">
+    <title>СКЭЛК</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+        integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        // Отправка данных на сервер
+        function send(event, php) {
+            console.log("Отправка запроса");
+            event.preventDefault ?
+                event.preventDefault() :
+                (event.returnValue = false);
+            var req = new XMLHttpRequest();
+            req.open("POST", php, true);
+            req.onload = function () {
+                if (req.status >= 200 && req.status < 400) {
+                    json = JSON.parse(this.response); // Ебанный internet explorer 11
+                    console.log(json);
+
+                    // ЗДЕСЬ УКАЗЫВАЕМ ДЕЙСТВИЯ В СЛУЧАЕ УСПЕХА ИЛИ НЕУДАЧИ
+                    if (json.result == "success") {
+                        // Если сообщение отправлено
+
+                        $.fancybox.open(
+                            '<div class="message"><h2>Спасибо за заявку!</h2><p>Мы свяжемся с вами в ближайшее время</p></div>'
+                        );
+
+                        function closePopup() {
+                            $.fancybox.close();
+                            $.fancybox.close();
+                        }
+
+                        setTimeout(closePopup, 3000);
+                    } else {
+                        // Если произошла ошибка
+                        alert("Ошибка. Сообщение не отправлено");
+                    }
+                    // Если не удалось связаться с php файлом
+                } else {
+                    alert("Ошибка сервера. Номер: " + req.status);
+                }
+            };
+
+            // Если не удалось отправить запрос. Стоит блок на хостинге
+            req.onerror = function () {
+                alert("Ошибка отправки запроса");
+            };
+            req.send(new FormData(event.target));
+        }
+    </script>
+</head>
+
+<body>
+    <div class="fixed-menu">
+        <button  class="fixed-menu__btn fixed-menu__btn_tel">
+            <img src="img/icons/callback.svg" alt="иконка" width="32" height="32">
+            <span>
+                Позвонить
+            </span>
+            <div class="fixed-tel">
+                <div class="fixed-tel__item">
+                    <h3 class="fixed-tel__h3">Общий</h3>
+                    <a class="fixed-tel__link" href="tel:+7(495)927-67-79">+7(495)927-67-79</a>
+                    <a class="fixed-tel__link" href="mailto:info@skelk.ru">info@skelk.ru</a>
+                    <span>10:00 - 16:00</span>
+                </div>
+                <div class="fixed-tel__item">
+                    <h3 class="fixed-tel__h3">Отдел продаж</h3>
+                    <a class="fixed-tel__link" href="tel:+7(912)076-93-68">+7(912)076-93-68</a>
+                    <a class="fixed-tel__link" href="mailto:info@skelk.ru">info@skelk.ru</a>
+                    <span>10:00 - 16:00</span>
+                </div>
+                <div class="fixed-tel__item">
+                    <h3 class="fixed-tel__h3">Отдел снабжения</h3>
+                    <a class="fixed-tel__link" href="tel:+7(495)927-67-79">+7(912)076-93-68</a>
+                    <a class="fixed-tel__link" href="mailto:info@skelk.ru">info@skelk.ru</a>
+                    <span>10:00 - 16:00</span>
+                </div>
+            </div>
+        </button>
+        <button data-fancybox data-src='#mainPopup' class="fixed-menu__btn">
+            <img src="img/icons/request.svg" alt="иконка" width="32" height="32">
+            <span>
+                Запрос
+            </span>
+        </button>
+    
+    </div>
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="header__top-body">
+                    <div class="header__item">
+                        поставщик импортных электронных компонентов
+                    </div>
+                    <div class="header__item">
+                        <a class="header__link" href="skype:live:17core?add">
+                            <img class="header__icon" src="img/icons/skype.svg" width="32" height="32" alt="скайп">
+                            <span>
+                                live:17core
+                            </span>
+                        </a>
+                    </div>
+                    <div class="header__item">
+                        <a class="header__link" href="https://t.me/skelk">
+                            <img class="header__icon" src="img/icons/tg.svg" width="32" height="32" alt="тг">
+                            <span>
+                                @skelk
+                            </span>
+                        </a>
+                    </div>
+                    <div class="header__item">
+                        <a class="header__link" href="https://vk.com/sk_elk">
+                            <img class="header__icon" src="img/icons/vk.svg" width="32" height="32" alt="вк">
+                            <span>
+                                sk_elk
+                            </span>
+                        </a>
+                    </div>
+                    <div class="header__item">
+                        <a class="header__link" href="https://wa.me/89060242693">
+                            <img class="header__icon" src="img/icons/wa.svg" width="32" height="32" alt="вотсап">
+                            <span>
+                                89060242693
+                            </span>
+                        </a>
+                    </div>
+                    <div class="header__item">
+                        <a class="header__link" href="tel:+7(495)927-67-79">
+                            <img class="header__icon" src="img/icons/tel.svg" width="32" height="32" alt="телефон">
+                            <span>
+                                +7(495) 927-67-79
+                            </span>
+                        </a>
+                    </div>
+                    <div class="header__item">
+                        <a class="header__link" href="tel:+7(495)927-67-79">
+                            <img class="header__icon" src="img/icons/mail.svg" width="32" height="32" alt="почта">
+                            <span>
+                                info@skelk.ru
+                            </span>
+                        </a>
+                    </div>
+                    <div class="header__item">
+                        <img class="header__icon" src="img/icons/geo.svg" width="32" height="32" alt="гео">
+                        <span>
+                            Адрес: г.Москва, ул.Кленовый б-р, д13к1 <br>
+                            Время работы с 10:00 до 16:00(по МСК)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header__body">
+                <div class="header__logo-wrapper">
+                    <img class="header__logo" src="img/logo.svg" alt="лого">
+                    <p>
+                        Оригинальные компоненты с крупнейших складов <span class="active-color">Азии</span>,<span
+                            class="active-color">Европы</span> и <span class="active-color">Америки</span>
+                    </p>
+                </div>
+                <div class="header__search">
+                    <button data-fancybox data-src='#mainPopup' class="btn-search">
+                        <span class="btn-search__txt">
+                            Пожалуйста, введите парт-номер
+                        </span>
+                        <span class="btn-search__lence">
+                            <img src="img/icons/lence.svg" alt="лупа">
+                        </span>
+                    </button>
+                </div>
+                <button class="btn-cart">
+                    <img src="img/icons/cart.svg" width="32" height="32" alt="корзина">
+                    <span>Корзина</span>
+                </button>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__li">
+                   
+                        <span>
+                            Продукция
+                        </span>
+                    </li>
+                    <li class="nav__li">
+                        <img src="img/icons/menu/quet.png" alt="иконка">
+                        <span>
+                            Почему мы?
+                        </span>
+                    </li>
+                    <li class="nav__li">
+                        <img src="img/icons/menu/orig.png" alt="иконка">
+                        <span>
+                            Только оригинальная продукция
+                        </span>
+                    </li>
+                    <li class="nav__li">
+                        <img src="img/icons/menu/sklad.png" alt="иконка">
+                        <span>
+                            Доставляем со стоков Азии, Digikey, Mouser, Arrow и др.
+                        </span>
+                    </li>
+                    <li class="nav__li">
+                        <img src="img/icons/menu/coins.png" alt="иконка">
+                        <span>
+                            Низкие цены
+                        </span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="block1">
+            <div class="container">
+                <div class="block1__body">
+                    <div class="block1__item">
+                        <ul class="cat-ul">
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/1.png" alt="иконка">
+                                <span>
+                                    Микросхемы
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/2.png" alt="иконка">
+                                <span>
+                                    Диоды и тиристоры
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/3.png" alt="иконка">
+                                <span>
+                                    Транзисторы
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/4.png" alt="иконка" style="width: 18px; height: 24px;">
+                                <span>
+                                    Оптоэлектрика
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/5.png" alt="иконка">
+                                <span>
+                                    Конденсаторы
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/6.png" alt="иконка">
+                                <span>
+                                    Резисторы
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/7.png" alt="иконка">
+                                <span>
+                                    Индуктивные компоненты
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/8.png" alt="иконка">
+                                <span>
+                                    Разъемы, соединители
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/9.png" alt="иконка">
+                                <span>
+                                    Переключатели
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/10.png" alt="иконка">
+                                <span>
+                                    Реле
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/11.png" alt="иконка">
+                                <span>
+                                    Кварцы, фильтры, осцилляторы
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/12.png" alt="иконка" style="width: 18px; height: 24px;">
+                                <span>
+                                    Устройства защиты
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/13.png" alt="иконка">
+                                <span>
+                                    Источники питания
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/14.png" alt="иконка">
+                                <span>
+                                    Датчики
+                                </span>
+                            </li>
+                            <li class="cat-ul__li">
+                                <img class="cat-ul__icon" src="img/icons/catalog/15.png" alt="иконка">
+                                <span>
+                                    Измерительные приборы
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block1__item">
+                        <img src="img/banner.png" alt="банер">
+                    </div>
+                    <div class="block1__item">
+                        <div style="padding: 0 10px;">
+                            <p>
+                                Привет! Добро пожаловать на сайт компании СКЭЛК;) Оставить заявку тут:
+                            </p>
+                            <button data-fancybox data-src='#mainPopup' class="btn-red">
+                                Нажми
+                            </button>
+                            <div class="block1__news">
+                                <div class="block1__news-top">
+                                    <h3>
+                                        Новости
+                                    </h3>
+                                    <span>Еще</span>
+                                </div>
+                                <p class="block1__news-p">
+                                    "Время электроники": В России снят запрет на использование стандарта беспроводных
+                                    сетей
+                                    WI-FI 6E
+                                </p>
+                                <p class="block1__news-p">
+                                    "Время электроники": Huawei осталась без собственных процессоров
+                                </p>
+                                <p class="block1__news-p">
+                                    "Время электроники": Первый белорусский ноутбук таинственн исчез из продаж почти
+                                    сразу
+                                    после начала
+                                </p>
+                            </div>
+                        </div>
+                        <div class="block1-menu">
+                            <div class="block1-menu__item">
+                                <img src="img/icons/block1/order.svg" alt="иконка" class="block1-menu__img">
+                                <p>
+                                    Мой заказ
+                                </p>
+                                <span>
+                                    Отследить
+                                </span>
+                            </div>
+                            <div class="block1-menu__item">
+                                <img src="img/icons/block1/sales.svg" alt="иконка" class="block1-menu__img">
+                                <p>
+                                    Скидки
+                                </p>
+                                <span>
+                                    Активные
+                                </span>
+                            </div>
+                            <div class="block1-menu__item">
+                                <img src="img/icons/block1/contract.svg" alt="иконка" class="block1-menu__img">
+                                <p>
+                                    Договор
+                                </p>
+                                <span>
+                                    Скачать
+                                </span>
+                            </div>
+                            <div class="block1-menu__item">
+                                <img src="img/icons/block1/cloud.svg" alt="иконка" class="block1-menu__img">
+                                <p>
+                                    Облако
+                                </p>
+                                <span>
+                                    История
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+
+    </footer>
+
+
+    <div id="mainPopup" style="display: none;">
+        <div class="mainPopup">
+            <h2 class="mainPopup__title">
+                Оставьте заявку
+            </h2>
+            <span class="mainPopup__sub-title">
+                и мы свяжемся с вами в ближайшее время
+            </span>
+            <form class="mainPopup-form" onsubmit="send(event, 'mailer/config.php')" method="post">
+                <input name="email" class="mainPopup-form__input" placeholder="Почта" required>
+                <textarea name="msg" id="msg" class="mainPopup-form__input" placeholder="Ваш запрос"></textarea>
+                <input name="btn" value="Отправить" type="submit" class="btn btn_main popupBtn">
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
+        integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
