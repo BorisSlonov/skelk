@@ -24,19 +24,19 @@ try {
 
     // Настройки вашей почты
     $mail->Host       = 'smtp.yandex.ru'; // SMTP сервера вашей почты
-    $mail->Username   = 'fresh-avocode@yandex.ru'; // Логин на почте
-    $mail->Password   = 'haha1423haha'; // Пароль на почте
+    $mail->Username   = 'sslonovboriss@yandex.ru'; // Логин на почте
+    $mail->Password   = 'rfnfhncxiyirigig'; // Пароль на почте
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
-    $mail->setFrom('fresh-avocode@yandex.ru', 'Заявка с сайта Ретле'); // Адрес самой почты и имя отправителя
+    $mail->setFrom('sslonovboriss@yandex.ru', 'Заявка с сайта skelk'); // Адрес самой почты и имя отправителя
 
    // Получатель письма
-   $mail->addAddress('sslonovboriss@yandex.ru'); 
-
+   $mail->addAddress('sslonovborisss@gmail.com'); 
+   $mail->addAddress('info@skelk.ru'); 
     
 
 // Формирование самого письма
-$title = "Заявка с сайта Ретле";
+$title = "Заявка с сайта skelk.ru";
 $body = "
 <h2></h2>
 <b>Почта:</b> $email <br>

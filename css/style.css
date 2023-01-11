@@ -280,14 +280,17 @@ button:hover {
     }
 }
 
-.cat-ul__icon,
-.nav__li img {
+.cat-ul__icon {
     width: 20px;
     height: 20px;
     object-fit: contain;
 }
 
-
+.nav__li img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
 
 .fixed-menu {
     position: fixed;
@@ -437,7 +440,7 @@ button:hover {
 }
 
 .cat-ul__li:not(:first-child) {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .btn-red {
@@ -531,7 +534,7 @@ button:hover {
 .elka::after {
     content: '';
     position: absolute;
-    background-image: url('../img/elka.jpg');
+    background-image: url('../img/elka.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -548,7 +551,7 @@ button:hover {
     width: 80px;
     height: 120px;
     top: -40px;
-    right: -100%;
+    right: -75%;
 }
 
 @media(max-width:767px) {
