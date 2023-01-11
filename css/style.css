@@ -58,6 +58,10 @@ button:hover {
     color: var(--blue);
 }
 
+.color-red {
+    color: red;
+}
+
 .header {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
@@ -115,7 +119,7 @@ button:hover {
 
 .header__body {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: 60px 0;
     gap: 20px;
 }
@@ -154,6 +158,14 @@ button:hover {
 .btn-search__txt {
     width: 100%;
     display: block;
+    text-align: left;
+    padding-left: 20px;
+    color: rgba(0, 0, 0, 0.558);
+}
+
+.search-examples {
+    font-size: 12px;
+    margin-top: 5px;
 }
 
 .btn-search {
@@ -270,8 +282,8 @@ button:hover {
 
 .cat-ul__icon,
 .nav__li img {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     object-fit: contain;
 }
 
@@ -395,7 +407,6 @@ button:hover {
 
 .block1__body {
     display: flex;
-    align-items: flex-start;
     gap: 20px;
 }
 
@@ -426,7 +437,7 @@ button:hover {
 }
 
 .cat-ul__li:not(:first-child) {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .btn-red {
@@ -466,7 +477,7 @@ button:hover {
 }
 
 .block1-menu__img {
-    max-width: 52px;
+    max-width: 32px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
@@ -476,6 +487,92 @@ button:hover {
     border: 1px solid var(--grey);
     padding: 10px;
 }
+
+.block1-menu__item span {
+    color: rgba(0, 0, 0, 0.48);
+    font-size: 14px;
+}
+
+.block1__banner {
+    height: 100%;
+}
+
+.block1__item_banner {
+    position: relative;
+    width: 100%;
+    background-image: url('../img/banner.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    font-family: 'Neucha', cursive;
+
+}
+
+.block1__item_banner span {
+    color: #7cbeff !important;
+
+}
+
+.block1__item_banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.rabbit,
+.elka {
+    position: relative;
+}
+
+.elka::after {
+    content: '';
+    position: absolute;
+    background-image: url('../img/elka.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 120px;
+    top: -30px;
+}
+
+.rabbit::after {
+    content: '';
+    position: absolute;
+    background-image: url('../img/running-rabbit.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 120px;
+    top: -40px;
+    right: -100%;
+}
+
+@media(max-width:767px) {
+
+    .elka::after,
+    .rabbit::after {
+        display: none;
+    }
+
+}
+
+.block1__text {
+    position: relative;
+    z-index: 10;
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-weight: bold;
+    font-size: 28px;
+    color: #fff;
+}
+
 
 @media(max-width:1023px) {
     .block1__body {
